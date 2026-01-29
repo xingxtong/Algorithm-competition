@@ -1,17 +1,15 @@
-#include<iostream>
-#include<string>
-#include<cstdio>
+//#include<iostream>
+//#include<string>
+//#include<cstdio>
+//
+//
+//using namespace std;
 
-
-using namespace std;
-
-
-
-int main()
-{
-    printf("\a");
-	return 0;
-}
+//int main()
+//{
+//    printf("\a");
+//	return 0;
+//}
 
 //int main()
 //{
