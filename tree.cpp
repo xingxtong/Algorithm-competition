@@ -12,9 +12,7 @@ que duilie;
 //树的孩子表示法(vector数组实现)
 void tree1()
 {
-
 	int n;
-
 	cin >> n;				//获取几条边
 	int a, b;
 	for (int i = 1; i < n; i++)
@@ -49,6 +47,11 @@ void bfs_vec(int num)
 	{
 		duilie.push(Tree[num][i]);
 	}
+	for(int i=duilie.size()-1;i>0;i++)
+	{ 
+		bfs_vec(duilie.head());
+	}
+	
 }
 
 //链式前向星添加数据
@@ -73,7 +76,6 @@ void tree_line()
 		add_line(b, a);
 	}
 }
-
 
 //链式前向星的深度优先遍历
 void dfs_line() 

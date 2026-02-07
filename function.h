@@ -1,6 +1,8 @@
-#pragma once
-#include"head.h"
+#ifndef FUNC
+#define FUNC
 
+#include"head.h"
+//队列的函数
 void queue1();
 //vector数组创建的树
 void tree1();
@@ -10,3 +12,13 @@ void bfs_vec();
 void tree_line();
 void dfs_line();
 void bfs_line();
+
+void initialize()			//initialize(初始化)
+{
+	for (int i = 0; i < N; i++)
+	{
+		check[i] = false;
+	}
+}
+
+#endif // FUNC
