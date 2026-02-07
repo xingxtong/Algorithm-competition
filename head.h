@@ -1,6 +1,6 @@
-
-#ifndef HHH
-#define HHH
+#pragma
+//#ifndef HHH
+//#define HHH
 
 #include<iostream>
 #include<vector>
@@ -33,7 +33,6 @@ private:
 	int a[MAX];
 	int front, back;
 public:
-
 	//¹¹Ôìº¯Êý
 	que() :front(0), back(-1) {}
 
@@ -85,4 +84,3 @@ public:
 	}
 
 };
-#endif // !HHH

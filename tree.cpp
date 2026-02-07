@@ -28,8 +28,8 @@ void tree1()
 //vector数组的深度优先遍历
 void dfs_vec(int p)
 {
-	cout << p<<' ';
-	for (int i = Tree[p].size()-1; i >0 ; i--)
+	cout << p << ' ';
+	for (int i = Tree[p].size() - 1; i > 0; i--)
 	{
 		if (!check[p])
 		{
@@ -42,16 +42,24 @@ void dfs_vec(int p)
 //vector数组的广度优先遍历
 void bfs_vec(int num)
 {
-	cout << num<<' ';
-	for (int i = Tree[num].size()-1; i > 0; i--)
+	//if (!check[num])
+	//{
+	//	check[num] = true;
+	//	cout << num << ' ';
+	//	for (int i = Tree[num].size() - 1; i > 0; i--)
+	//	{
+	//		duilie.push(Tree[num][i]);
+	//	}
+	//	bfs_vec(duilie.head());
+	//}
+	//无校验
+	check[num] = true;
+	cout << num << ' ';
+	for (int i = Tree[num].size() - 1; i > 0; i--)
 	{
 		duilie.push(Tree[num][i]);
 	}
-	for(int i=duilie.size()-1;i>0;i++)
-	{ 
-		bfs_vec(duilie.head());
-	}
-	
+	bfs_vec(duilie.head());
 }
 
 //链式前向星添加数据
@@ -78,13 +86,53 @@ void tree_line()
 }
 
 //链式前向星的深度优先遍历
-void dfs_line() 
+void dfs_line(int n)
 {
-
+	for (int id1 = n;; id1 = p[h[n]])
+	{
+		if (p[h[id]])
+		{
+			if (!check[id])
+			{
+				check[id] = true;
+				cout << e[h[id]] << ' ';
+				dfs_line(p[h[id]]);
+			}
+		}
+		else
+		{
+			if (!check[id])
+			{
+				check[id] = true;
+				cout << e[h[id]] << ' ';
+				dfs_line(p[h[id]]);
+				break;
+			}
+		}
+	}
 }
+	//if (!check[n])
+	//{
+	//	check[n] = true;
+	//	cout << e[h[n]]<<' ';
+	//	if (p[h[n]] == 0)
+	//	{
+	//		return;
+	//	}
+	//	dfs_line(p[h[n]]);
+	//}
 
 //链式前向星的广度优先遍历
-void bfs_line()
+void bfs_line(int n)
 {
-
+	cout << e[h[n]] << ' ';
+	if (p[h[n]] != 0)
+	{
+		duilie.push(p[h[n]]);
+		bfs_line(p[h[n]]);
+	}
+	if (duilie.empty())
+	{
+		bfs_line(p[duilie.head()]);
+	}
 }

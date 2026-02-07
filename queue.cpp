@@ -17,3 +17,4 @@ void queue1()
 	cout << lei.size() << endl;		//队列的有效数据个数
 	cout << lei.empty() << endl;	//判空
 }
+
