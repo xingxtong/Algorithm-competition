@@ -4,6 +4,7 @@
 
 #include<iostream>
 #include<vector>
+#include<fstream>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ private:
 	int front, back;
 public:
 	//构造函数
-	que() :front(0), back(-1) {}
+	que() :front(0), back(0) {}
 
 	//入队操作
 	void push(int num)
@@ -42,7 +43,6 @@ public:
 		back = (back + 1) % MAX;
 		if (back != front)
 		{
-			back = (back + 1) % MAX;
 			a[back] = num;
 		}
 		else
@@ -59,22 +59,18 @@ public:
 		{
 			front = (front + 1) % MAX;
 		}
-		else
-		{
-			cout << "队列为空" << endl;
-		}
 	}
 
 	//显示队头元素
 	int head()
 	{
-		return a[front];
+		return a[front+1];
 	}
 
 	//队列大小
 	int size()
 	{
-		return (back + MAX - front + 1) % MAX;
+		return (back + MAX - front) % MAX;
 	}
 
 	//判空(为空则返回true)

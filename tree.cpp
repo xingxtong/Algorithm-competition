@@ -15,7 +15,7 @@ void tree1()
 	int n;
 	cin >> n;				//获取几条边
 	int a, b;
-	for (int i = 1; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		//由于存的是无根树，就要把每个结点之间的逻辑关系都存下来，
 		cin >> a >> b;
@@ -28,12 +28,12 @@ void tree1()
 //vector数组的深度优先遍历
 void dfs_vec(int p)
 {
-	cout << p << ' ';
-	for (int i = Tree[p].size() - 1; i > 0; i--)
+	if (!check[p])
 	{
-		if (!check[p])
+		check[p] = true;
+		cout << p << ' ';
+		for (int i = Tree[p].size() - 1; i > -1; i--)
 		{
-			check[p] = true;
 			dfs_vec(Tree[p][i]);
 		}
 	}
@@ -42,24 +42,20 @@ void dfs_vec(int p)
 //vector数组的广度优先遍历
 void bfs_vec(int num)
 {
-	//if (!check[num])
-	//{
-	//	check[num] = true;
-	//	cout << num << ' ';
-	//	for (int i = Tree[num].size() - 1; i > 0; i--)
-	//	{
-	//		duilie.push(Tree[num][i]);
-	//	}
-	//	bfs_vec(duilie.head());
-	//}
-	//无校验
-	check[num] = true;
-	cout << num << ' ';
-	for (int i = Tree[num].size() - 1; i > 0; i--)
+	duilie.pop();
+	if (!check[num])
 	{
-		duilie.push(Tree[num][i]);
+		check[num] = true;
+		cout << num << ' ';
+		for (int i = Tree[num].size() - 1; i > -1; i--)
+		{
+			duilie.push(Tree[num][i]);
+		}
 	}
-	bfs_vec(duilie.head());
+	if (duilie.size())
+	{
+		bfs_vec(duilie.head());
+	}
 }
 
 //链式前向星添加数据
@@ -77,7 +73,7 @@ void tree_line()
 	int n;
 	cin >> n;
 	int a, b;
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i < n; i++)
 	{
 		cin >> a >> b;
 		add_line(a, b);
@@ -88,39 +84,26 @@ void tree_line()
 //链式前向星的深度优先遍历
 void dfs_line(int n)
 {
-	for (int id1 = n;; id1 = p[h[n]])
+	for (int id1 = h[n];id1; id1 = p[id1])
 	{
-		if (p[h[id]])
+		if (!check[e[id1]])
 		{
-			if (!check[id])
-			{
-				check[id] = true;
-				cout << e[h[id]] << ' ';
-				dfs_line(p[h[id]]);
-			}
-		}
-		else
-		{
-			if (!check[id])
-			{
-				check[id] = true;
-				cout << e[h[id]] << ' ';
-				dfs_line(p[h[id]]);
-				break;
-			}
+			check[e[id1]] = true;
+			cout << e[id1] << ' ';
+			dfs_line(e[id1]);
 		}
 	}
 }
-	//if (!check[n])
-	//{
-	//	check[n] = true;
-	//	cout << e[h[n]]<<' ';
-	//	if (p[h[n]] == 0)
-	//	{
-	//		return;
-	//	}
-	//	dfs_line(p[h[n]]);
-	//}
+//if (!check[n])
+//{
+//	check[n] = true;
+//	cout << e[h[n]]<<' ';
+//	if (p[h[n]] == 0)
+//	{
+//		return;
+//	}
+//	dfs_line(p[h[n]]);
+//}
 
 //链式前向星的广度优先遍历
 void bfs_line(int n)
