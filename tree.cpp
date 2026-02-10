@@ -73,7 +73,7 @@ void tree_line()
 	int n;
 	cin >> n;
 	int a, b;
-	for (int i = 1; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		cin >> a >> b;
 		add_line(a, b);
@@ -84,7 +84,7 @@ void tree_line()
 //链式前向星的深度优先遍历
 void dfs_line(int n)
 {
-	for (int id1 = h[n];id1; id1 = p[id1])
+	for (int id1 = h[n]; id1; id1 = p[id1])
 	{
 		if (!check[e[id1]])
 		{
@@ -94,28 +94,24 @@ void dfs_line(int n)
 		}
 	}
 }
-//if (!check[n])
-//{
-//	check[n] = true;
-//	cout << e[h[n]]<<' ';
-//	if (p[h[n]] == 0)
-//	{
-//		return;
-//	}
-//	dfs_line(p[h[n]]);
-//}
 
 //链式前向星的广度优先遍历
 void bfs_line(int n)
 {
-	cout << e[h[n]] << ' ';
-	if (p[h[n]] != 0)
+	duilie.pop();
+	cout << n << ' ';
+	for (int id1 = h[n]; id1; id1 = p[id1])
 	{
-		duilie.push(p[h[n]]);
-		bfs_line(p[h[n]]);
+		if (!check[e[id1]])
+		{
+			check[n] = true;
+			duilie.push(e[id1]);
+			
+		}
 	}
-	if (duilie.empty())
+	if (duilie.size())
 	{
-		bfs_line(p[duilie.head()]);
+		bfs_line(duilie.head());
 	}
+	
 }

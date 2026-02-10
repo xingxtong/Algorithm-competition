@@ -28,11 +28,11 @@ int main()
 	//重定向cin
 	cin.rdbuf(file.rdbuf());		//修改cin的缓冲区到文件的区域
 	tree_line();
-	cout << "dfs:" << endl;
-	dfs_line(1);
+	//cout << "dfs:" << endl;
+	//dfs_line(1);
 	//initialize();
-	//cout << "bfs:" << endl;
-	//bfs_line(1);
+	cout << "bfs:" << endl;
+	bfs_line(1);
 
 	//vector数组创建的树
 	//tree1();
