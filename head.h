@@ -5,15 +5,17 @@
 #include<iostream>
 #include<vector>
 #include<fstream>
+#include<cstdlib>
+#include<cstdio>
 
 using namespace std;
 
-#define N 1000
+#define N 1
 #define MAX 100
 
 extern vector<int> Tree[N];				//vector类型的数组，用来存整个树
 extern int id;								//表示一个指针，给新来的数据分配空间
-extern int h[N], e[N * 2], p[N * 2];		//
+extern int h[N], e[N * 2], p[N * 2];		
 //h数组表示哨兵数组，通过该数组进行访问
 //e数组属于数值域数组，由于每一对数据都需要相互存两次，所以需要N*2
 //p数组存储子节点的数组下标数组（指针域），同样需要N*2
@@ -35,20 +37,20 @@ private:
 	int front, back;
 public:
 	//构造函数
-	que() :front(0), back(0) {}
+	que() :front(0), back(1) {}
 
 	//入队操作
 	void push(int num)
 	{
-		back = (back + 1) % MAX;
+		
 		if (back != front)
 		{
 			a[back] = num;
+			back = (back + 1) % MAX;
 		}
 		else
 		{
 			cout << "数列已满" << endl;
-			back = (back + MAX - 1) % MAX;
 		}
 	}
 
@@ -80,3 +82,14 @@ public:
 	}
 
 };
+
+typedef struct TreeNode
+{
+	bool lef;
+	bool rig;
+	char data;
+	TreeNode* lchild;
+	TreeNode* rchild;
+	TreeNode() :lef(false), rig(false) {};
+}Treen;
+typedef Treen* pTree;

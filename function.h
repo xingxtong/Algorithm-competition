@@ -13,6 +13,13 @@ void bfs_vec(int);
 void tree_line();
 void dfs_line(int);
 void bfs_line(int);
+//基于字符串创建的树
+bool createTree(char a[], pTree*);
+//基于二叉树的前中后遍历
+void preTree(pTree);
+
+//基于二叉树后序遍历的内存释放
+void backfree(pTree);
 
 void initialize()			//initialize(初始化)
 {
