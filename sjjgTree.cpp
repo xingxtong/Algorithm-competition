@@ -2,6 +2,10 @@
 
 using namespace std;
 
+//记录前驱
+pTree frontT1 = NULL;
+//记录后继
+pTree BackT2 = NULL;
 //计数
 int idd = 0;
 pTree backTree = NULL;
@@ -33,55 +37,68 @@ bool createTree(char a[], pTree* T)
 }
 
 //前序遍历
-void preTree(pTree T)
+void PreTree(pTree T)
 {
 	if (T == NULL)
 	{
 		return;
 	}
 	printf("%c ", T->data);
-	preTree(T->lchild);
-	preTree(T->rchild);
+	PreTree(T->lchild);
+	PreTree(T->rchild);
 }
 //中序遍历
-void preTree(pTree T)
+void CerTree(pTree T)
 {
 	if (T == NULL)
 	{
 		return;
 	}
-	preTree(T->lchild);
+	CerTree(T->lchild);
 	printf("%c ", T->data);
-	preTree(T->rchild);
+	CerTree(T->rchild);
 }
 //后序遍历
-void preTree(pTree T)
+void BackTree(pTree T)
 {
 	if (T == NULL)
 	{
 		return;
 	}
-	preTree(T->lchild);
-	preTree(T->rchild);
+	BackTree(T->lchild);
+	BackTree(T->rchild);
 	printf("%c ", T->data);
 }
 
+//二叉树线索化函数封装
+//void xsTree(pTree* T)
+//{
+//	xsTree(*T);
+//
+//}
+
 //二叉树的线索化
-void xsTree(pTree T)
-{
-	if (T == NULL)
-	{
-		return;
-	}
-	xsTree(T->lchild);
-	xs();
-	xsTree(T->rchild);
-}
+//void xsTree(pTree T)
+//{
+//	if (T == NULL)
+//	{
+//		return;
+//	}
+//	xsTree(T->lchild);
+//	xs();
+//	xsTree(T->rchild);
+//}
 
-void xs(pTree T)
-{
+//void xs(pTree T)
+//{
+//
+//}
 
-}
+//基于线索二叉树的遍历
+//void pr_xs_Tree(pTree T)
+//{
+//	pr_xs_Tree(T->)
+//}
 
 
 //基于后序遍历的内存释放
