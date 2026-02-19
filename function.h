@@ -29,8 +29,12 @@ void pr_xs_Tree(pTree);
 void insertion_sort(int a[], int*);
 //选择排序的函数
 void select_sort(int a[], int*);
+//冒泡排序
+void Bubble_sort(int a[], int*);
 //数组的输出
 void printarr(int a[], int);
+//检测数组的数量
+int jianarr(int a[]);
 
 
 void initialize()			//initialize(初始化)

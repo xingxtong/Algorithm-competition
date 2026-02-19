@@ -10,21 +10,24 @@ int h[N], e[N * 2], p[N * 2];
 bool check[N] = { true };
 
 //²âÊÔÊı×é
-int number[100] = { 0, 1,3,1,24,12,53,4,65457,123,324};
+int number[100] = { 0,1,3,1,24,12,53,4,65457,123,324,16,25,50,49,30,42,5};
 
 
 int main()
 {
-	int num = 11;
+	int num = jianarr(number);
 	printarr(number, num);
 	//²åÈëÅÅĞò£º
 	//insertion_sort(number, &number[num]);
 
 	//Ñ¡ÔñÅÅĞò
-	select_sort(number, &number[num]);
+	//select_sort(number, &number[num]);
+
+	//Ã°ÅİÅÅĞò
+	Bubble_sort(number, &number[num]);
 
 	//Êä³öº¯Êı
-	printarr(number, num);
+	//printarr(number, num);
 
 	//ÍêÈ«¶ş²æÊ÷
 	//char a[100] = "ABDH##I##E#J##CF##G##";
