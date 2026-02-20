@@ -31,6 +31,8 @@ void insertion_sort(int a[], int*);
 void select_sort(int a[], int*);
 //冒泡排序
 void Bubble_sort(int a[], int*);
+//堆排序
+void heap_sort(int a[], int*);
 //数组的输出
 void printarr(int a[], int);
 //检测数组的数量

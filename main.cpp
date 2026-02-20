@@ -1,4 +1,5 @@
 #include "function.h"
+#include<algorithm>
 
 using namespace std;
 
@@ -12,7 +13,6 @@ bool check[N] = { true };
 //测试数组
 int number[100] = { 0,1,3,1,24,12,53,4,65457,123,324,16,25,50,49,30,42,5};
 
-
 int main()
 {
 	int num = jianarr(number);
@@ -24,10 +24,13 @@ int main()
 	//select_sort(number, &number[num]);
 
 	//冒泡排序
-	Bubble_sort(number, &number[num]);
+	//Bubble_sort(number, &number[num]);
+
+	//堆排序
+	heap_sort(number, &number[num]);
 
 	//输出函数
-	//printarr(number, num);
+	printarr(number, num);
 
 	//完全二叉树
 	//char a[100] = "ABDH##I##E#J##CF##G##";
@@ -39,6 +42,7 @@ int main()
 
 	//backfree(T->lchild);
 	//free(T);
+	
 	//重定向cin
 	//int i = 0;
 	//ifstream file("data.txt");//打开名为data.txt的文件

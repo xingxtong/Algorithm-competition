@@ -3,6 +3,14 @@
 //声明输出函数
 void printarr(int a[], int);
 
+//交换函数
+void swap(int& a, int& b)
+{
+	int d = a;
+	a = b;
+	b = d;
+}
+
 //默认升序
 //第一个为数组指针，第二个为数组大小
 //从第二个数字开始依次选中数字，与前方的有序数列的数对比
@@ -77,6 +85,45 @@ void Bubble_sort(int a[], int* num)
 			return;
 		}
 		printarr(a, num - a);
+	}
+}
+
+//建堆
+void dui(int a[], int x, int len)
+{
+	int child = x*2;
+	//for (int numb = (num - a) / 2 - 1; numb > -1; numb--)
+	int len1 = len+1;
+	while (child < len1)
+	{
+		if (child + 1 < len1 && a[child] < a[child + 1])
+		{
+			child++;
+		}
+		if (a[x] > a[child])return;
+		swap(a[child], a[x]);
+		x = child;
+		child = x * 2;
+	}
+}
+
+//堆排序
+void heap_sort(int a[], int* num)
+{
+	int numb = num - a - 1;
+	int key = 0;
+	//1.先建堆
+	for (int i = numb / 2; i > 0; i--)
+	{
+		dui(a,i, numb);
+	}
+	//2.排序，再建堆
+	for (numb--; numb > 1; numb--)
+	{
+		//把堆顶和末尾交换
+		swap(a[1], a[numb+1]);
+		//把最后一个排除再建堆
+		dui(a,1,numb);
 	}
 }
 
