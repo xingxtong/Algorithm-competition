@@ -1,5 +1,6 @@
 #include "function.h"
-#include<algorithm>
+#include<fstream>
+#include<iostream>
 
 using namespace std;
 
@@ -11,12 +12,36 @@ int h[N], e[N * 2], p[N * 2];
 bool check[N] = { true };
 
 //测试数组
-int number[100] = { 0,1,3,1,24,12,53,4,65457,123,324,16,25,50,49,30,42,5};
+int number[110] = {0};
 
 int main()
 {
-	int num = jianarr(number);
-	printarr(number, num);
+	srand(time(NULL));
+	clock_t frist=clock();
+	ofstream file("data.txt");
+
+	//ofstream file("data.txt", ios::trunc);
+	//for (int i = 0; i < 100; i++)
+	//{
+	//	//
+	//	file << rand() % 100000 + 1<<' ';
+	//}
+	cin.rdbuf(file.rdbuf());
+	int num = 0;
+	for (int i = 1; i < 101; i++)
+	{
+		cin >> num;
+		number[i] = num;
+	}
+	num=jianarr(number);
+	cout << num;
+	file.close();
+	clock_t end = clock() - frist;
+	cout << end << "ms";
+	//srand(time(NULL));		//种一个随机种子
+	//int num = jianarr(number);
+	//cout << num<<endl;
+	//printarr(number, num);
 	//插入排序：
 	//insertion_sort(number, &number[num]);
 
@@ -27,10 +52,16 @@ int main()
 	//Bubble_sort(number, &number[num]);
 
 	//堆排序
-	heap_sort(number, &number[num]);
+	//heap_sort(number, &number[num]);
+
+	//快速排序
+	//quick_sort(number,&number[1], &number[num-1]);
+
+	//归并排序
+	//
 
 	//输出函数
-	printarr(number, num);
+	//printarr(number, num);
 
 	//完全二叉树
 	//char a[100] = "ABDH##I##E#J##CF##G##";
@@ -42,7 +73,7 @@ int main()
 
 	//backfree(T->lchild);
 	//free(T);
-	
+
 	//重定向cin
 	//int i = 0;
 	//ifstream file("data.txt");//打开名为data.txt的文件

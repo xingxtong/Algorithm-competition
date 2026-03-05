@@ -29,7 +29,6 @@ void insertion_sort(int a[], int* num)
 			j--;
 		}
 		*(j + 1) = key;
-		printarr(a, num - a);
 	}
 }
 
@@ -91,9 +90,9 @@ void Bubble_sort(int a[], int* num)
 //建堆
 void dui(int a[], int x, int len)
 {
-	int child = x*2;
+	int child = x * 2;
 	//for (int numb = (num - a) / 2 - 1; numb > -1; numb--)
-	int len1 = len+1;
+	int len1 = len + 1;
 	while (child < len1)
 	{
 		if (child + 1 < len1 && a[child] < a[child + 1])
@@ -108,6 +107,13 @@ void dui(int a[], int x, int len)
 }
 
 //堆排序
+//堆：堆就是一个完全二叉树
+//有大根堆和小根堆的说法，大根堆：树的父节点比两个子节点都大
+//所以第一步就是建堆(一般建大根堆)
+//建成堆后先把堆顶和数组末尾交换
+//再进行建堆，由于我们的树本来就是一个大根堆
+//我们只需把当前的堆顶依次与其子节点对比交换，该元素会到堆底，而此前第二大的元素会到堆顶
+//再把堆顶放到有序序列的前面
 void heap_sort(int a[], int* num)
 {
 	int numb = num - a - 1;
@@ -115,16 +121,78 @@ void heap_sort(int a[], int* num)
 	//1.先建堆
 	for (int i = numb / 2; i > 0; i--)
 	{
-		dui(a,i, numb);
+		dui(a, i, numb);
 	}
 	//2.排序，再建堆
 	for (numb--; numb > 1; numb--)
 	{
 		//把堆顶和末尾交换
-		swap(a[1], a[numb+1]);
+		swap(a[1], a[numb + 1]);
 		//把最后一个排除再建堆
-		dui(a,1,numb);
+		dui(a, 1, numb);
 	}
+}
+
+//取数组的第一个值
+int frist_element(int a[], int* n)
+{
+	return 0;
+}
+
+//取一个随机值
+int randnum(int frist, int end)
+{
+	int num = rand() % (end - frist) + frist;
+	return num;
+}
+
+//快速排序
+//快排需要选一个基准值
+//而基准值一般有三个方法：选第一个(这里默认)，选随机值，选头、中、尾三个元素的中间值
+//此次我们的快排三种方法都会使用，并使用缺省加回调函数的方式
+
+//快排原理：
+//先选一个基准值(基准值可以是第一个，最后一个，随机一个，头、中、末三个数的中位数)
+//根据基准值，把数组分为三部分，第一部分是比基准值小的，第二部分是等于基准值的，第三部分是大于基准值的
+//然后再把第一部分和第三部分进行递归，再细分
+//在分的数组比较小的时候可以使用插入排序进行优化，在这里当数组小于15个元素的时候，使用插入排序
+void quick_sort(int a[], int* frist, int* num)
+{
+	if (!(frist - num))
+	{
+		return;
+	}
+	else if (num - a < 15)
+	{
+		insertion_sort(a, num);
+		return;
+	}
+	int key = a[randnum(frist - a, num - a)];
+	int* i = frist;
+	int* f1 = frist;
+	int* end = num;
+	while (i < num&&end>=i)
+	{
+		if (*i < key)
+		{
+			swap(*f1, *i);
+			i++;
+			f1++;
+		}
+		else if (*i == key)
+		{
+			i++;
+		}
+		else
+		{
+			swap(*i, *end);
+			end--;
+		}
+	}
+	//小于基准值的那部分
+	quick_sort(a, frist,f1);
+	//大于基准值的那部分
+	quick_sort(a, end, num);
 }
 
 //输出整个数组的函数
