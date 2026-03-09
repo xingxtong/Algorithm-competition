@@ -21,7 +21,7 @@ extern int h[N], e[N * 2], p[N * 2];
 //p数组存储子节点的数组下标数组（指针域），同样需要N*2
 
 extern bool check[N];				//判断该位置是否遍历过(哈希表)
-
+extern int fuzhu[N];				//归并排序的辅助数组
 //都能使用的函数
 
 //初始化check数组

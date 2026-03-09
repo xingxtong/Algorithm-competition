@@ -52,7 +52,6 @@ void select_sort(int a[], int* num)
 		number = *select;
 		*select = *i;
 		*i = number;
-		printarr(a, num - a);
 	}
 }
 
@@ -83,7 +82,6 @@ void Bubble_sort(int a[], int* num)
 		{
 			return;
 		}
-		printarr(a, num - a);
 	}
 }
 
@@ -124,7 +122,7 @@ void heap_sort(int a[], int* num)
 		dui(a, i, numb);
 	}
 	//2.排序，再建堆
-	for (numb--; numb > 1; numb--)
+	for (numb--; numb > 0; numb--)
 	{
 		//把堆顶和末尾交换
 		swap(a[1], a[numb + 1]);
@@ -171,7 +169,7 @@ void quick_sort(int a[], int* frist, int* num)
 	int* i = frist;
 	int* f1 = frist;
 	int* end = num;
-	while (i < num&&end>=i)
+	while (i < num && end >= i)
 	{
 		if (*i < key)
 		{
@@ -190,9 +188,53 @@ void quick_sort(int a[], int* frist, int* num)
 		}
 	}
 	//小于基准值的那部分
-	quick_sort(a, frist,f1);
+	quick_sort(a, frist, f1);
 	//大于基准值的那部分
 	quick_sort(a, end, num);
+}
+
+//归并排序
+//归并原理：
+//
+void guibing_sort(int a[], int frist, int end)
+{
+	if (frist >= end)
+		return;
+	//1.把数组分成两个
+	int center = (end - frist) / 2;
+	//2.进行排序(左右两个进行排序)
+	guibing_sort(a, frist, center);
+	guibing_sort(a, center + 1, end);
+	//3.排序好之后就合并数组
+	//先把排序好的两半数组，合并到辅助数组里
+	int left = frist, i = 1, right = center;
+
+	while (left < center && right < end)
+	{
+		if (a[left] < a[right])
+		{
+			fuzhu[i++] = a[left++];
+		}
+		else
+		{
+			fuzhu[i++] = a[right++];
+		}
+	}
+	//排序剩余的数
+	while (left < center)
+	{
+		fuzhu[i++] = a[left++];
+	}
+	while (right < end)
+	{
+		fuzhu[i++] = a[right++];
+	}
+	//把辅助数组的数拷贝至原数组
+	i = 1;
+	while (frist < end)
+	{
+		a[frist++] = fuzhu[i++];
+	}
 }
 
 //输出整个数组的函数
@@ -202,7 +244,7 @@ void printarr(int a[], int num)
 	{
 		cout << a[i] << ' ';
 	}
-	cout << endl;
+	cout << endl << endl;
 }
 
 //检测函数

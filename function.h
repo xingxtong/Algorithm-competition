@@ -34,12 +34,18 @@ void Bubble_sort(int a[], int*);
 //堆排序
 void heap_sort(int a[], int*);
 //快速排序
-void quick_sort(int a[], int*,int*);
+void quick_sort(int a[], int*, int*);
+//归并排序
+void guibing_sort(int a[], int, int);
 //数组的输出
 void printarr(int a[], int);
 //检测数组的数量
 int jianarr(int a[]);
 
+//高精度加法
+void gaoadd(char arr1[], char arr2[], char* ia, char* ib);
+//char类型的数组输出
+void printa(char arr[], int num);
 
 void initialize()			//initialize(初始化)
 {
