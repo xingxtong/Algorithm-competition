@@ -10,11 +10,10 @@ int id = 1;
 int h[N], e[N * 2], p[N * 2];
 bool check[N] = { true };
 
-//辅助数组
-int fuzhu[N];
+
 
 //测试数组
-int number[100010] = { 0 };
+int number[109] = { 0 };
 
 int main()
 {
@@ -31,43 +30,49 @@ int main()
 	//file.close();
 
 	ofstream file("data.txt", ios::app);	//写文件的类型
-	ifstream infile("data1.txt");			//读文件的类型
+	ifstream infile("data.txt");			//读文件的类型
+	ifstream infile1("data1.txt");
 
 	//重定向scanf
 	//freopen("data1.txt", "r", stdin);
 	auto old_rdbuf = cin.rdbuf(infile.rdbuf());	//记录之前的cin缓冲区
 
-	//int num = 0;
-	//for (int i = 1; i < 51; i++)
+	int num = 0;
+	for (int i = 1; i < 51; i++)
+	{
+		//scanf("%d", &number[i]);
+		cin >> number[i];
+	}
+
+	//char num = 0;
+	//char arr1[102], arr2[102];
+	//int i1 = 0, i2 = 1;
+	//arr1[0] = '0';
+	//while (arr1[i1] >= '0' && arr1[i1] <= '9')
 	//{
-	//	//scanf("%d", &number[i]);
-	//	cin >> number[i];
+	//	i1++;
+	//	cin >> arr1[i1];
 	//}
+	//i1 -= 1;
+	//num = '!';
+	//while (num < '0' || num > '9')
+	//{
+	//	cin >> num;
+	//}
+	//arr2[1] = num;
+	//while (arr2[i2] >= '0' && arr2[i2] <= '9')
+	//{
+	//	i2++;
+	//	cin >> arr2[i2];
+	//}
+	//i2 -= 1;
+	//printa(arr1, i1);
+	//printa(arr2, i2);
+	//gaoadd(arr1, arr2, arr1+i1, arr2+i2);
 
-	char num = 0;
-	char arr1[102], arr2[102];
-	int i1 = 0, i2 = 1;
-	arr1[0] = '0';
-	while (arr1[i1] >= '0' && arr1[i1] <= '9')
-	{
-		i1++;
-		cin >> arr1[i1];
-
-	}
-	num = 0;
-	while (num <= '0' && num >= '9')
-	{
-		cin >> num;
-	}
-	arr2[1] = num;
-	while (arr2[i2] >= '0' && arr2[i2] <= '9')
-	{
-		i2++;
-		cin >> arr2[i2];
-	}
-	printa(arr1, i1);
-	printa(arr2, i2);
-
+	//计算数组元素个数
+	num = jianarr(number);
+	printarr(number, num);
 
 	//插入排序：
 	//insertion_sort(number, &number[num]);

@@ -59,3 +59,9 @@ void gaoadd(char arr1[], char arr2[], char* ia, char* ib)
 		printa(arr2, id - arr2);
 	}
 }
+
+//高精度减法(subtract：减)
+void gao_Subtract(char arr1[], char arr2[], char* ia, char* ib)
+{
+
+}

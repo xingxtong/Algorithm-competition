@@ -1,5 +1,7 @@
 #include"head.h"
 
+//辅助数组
+int fuzhu[100];
 //声明输出函数
 void printarr(int a[], int);
 
@@ -10,6 +12,8 @@ void swap(int& a, int& b)
 	a = b;
 	b = d;
 }
+
+//插入排序
 
 //默认升序
 //第一个为数组指针，第二个为数组大小
@@ -33,6 +37,7 @@ void insertion_sort(int a[], int* num)
 }
 
 //选择排序
+
 //从整个数列中选出最小的数，放在有序序列的最后面
 //有序序列在数组的前面
 void select_sort(int a[], int* num)
@@ -56,6 +61,7 @@ void select_sort(int a[], int* num)
 }
 
 //冒泡排序
+
 //数组的第一个开始，依次与后一个相比
 //如果比后一个大，就交换位置
 //在排序过程中会出现已经排好但还在运行的情况，
@@ -105,6 +111,7 @@ void dui(int a[], int x, int len)
 }
 
 //堆排序
+
 //堆：堆就是一个完全二叉树
 //有大根堆和小根堆的说法，大根堆：树的父节点比两个子节点都大
 //所以第一步就是建堆(一般建大根堆)
@@ -145,6 +152,7 @@ int randnum(int frist, int end)
 }
 
 //快速排序
+
 //快排需要选一个基准值
 //而基准值一般有三个方法：选第一个(这里默认)，选随机值，选头、中、尾三个元素的中间值
 //此次我们的快排三种方法都会使用，并使用缺省加回调函数的方式
@@ -194,22 +202,34 @@ void quick_sort(int a[], int* frist, int* num)
 }
 
 //归并排序
+
 //归并原理：
-//
+//把数组直接从中间分开
+//左右两边分别递归
+//然后再通过辅助数组合并数组
+//最后把辅助数组拷贝到原数组
 void guibing_sort(int a[], int frist, int end)
 {
 	if (frist >= end)
 		return;
+	//else if (frist + 1 == end)
+	//{
+	//	if (a[frist] > a[end])
+	//	{
+	//		swap(a[frist], a[end]);
+	//	}
+	//	return;
+	//}
 	//1.把数组分成两个
-	int center = (end - frist) / 2;
+	int center = (end - frist) / 2+frist;
 	//2.进行排序(左右两个进行排序)
 	guibing_sort(a, frist, center);
 	guibing_sort(a, center + 1, end);
 	//3.排序好之后就合并数组
 	//先把排序好的两半数组，合并到辅助数组里
-	int left = frist, i = 1, right = center;
+	int left = frist, i = 1, right = center+1;
 
-	while (left < center && right < end)
+	while (left <= center && right <= end)
 	{
 		if (a[left] < a[right])
 		{
@@ -221,17 +241,17 @@ void guibing_sort(int a[], int frist, int end)
 		}
 	}
 	//排序剩余的数
-	while (left < center)
+	while (left <= center)
 	{
 		fuzhu[i++] = a[left++];
 	}
-	while (right < end)
+	while (right <= end)
 	{
 		fuzhu[i++] = a[right++];
 	}
 	//把辅助数组的数拷贝至原数组
 	i = 1;
-	while (frist < end)
+	while (frist <= end)
 	{
 		a[frist++] = fuzhu[i++];
 	}
